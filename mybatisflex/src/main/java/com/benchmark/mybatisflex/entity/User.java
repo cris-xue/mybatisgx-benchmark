@@ -4,6 +4,8 @@ import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.RelationOneToMany;
 import com.mybatisflex.annotation.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,33 +26,29 @@ public class User implements Serializable {
     @Id(keyType = KeyType.Auto)
     private Long id;
 
+    @NotBlank
+    @NotNull
     private String username;
 
+    @NotBlank
+    @NotNull
     private String email;
 
-    private String phone;
+    @NotNull
+    private Long phone;
 
+    @NotNull
     private Integer age;
 
+    @NotNull
     private Integer status;
 
+    @NotNull
     private Date createTime;
 
+    @NotNull
     private Date updateTime;
 
     @RelationOneToMany(selfField = "id", targetField = "userId")
     private List<Order> orders;
-
-    /**
-     * 构造函数（用于批量插入）
-     */
-    public User(String username, String email, String phone, Integer age, Integer status) {
-        this.username = username;
-        this.email = email;
-        this.phone = phone;
-        this.age = age;
-        this.status = status;
-        this.createTime = new Date();
-        this.updateTime = new Date();
-    }
 }

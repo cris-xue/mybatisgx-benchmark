@@ -10,8 +10,8 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>jpa</artifactId>
-	<name>jpa</name>
+	<artifactId>mybatis</artifactId>
+	<name>mybatis</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,10 +26,11 @@
 			<artifactId>spring-boot-starter</artifactId>
 			<version>3.3.13</version>
 		</dependency>
-		<!-- JPA -->
+		<!-- mybatis -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>3.0.5</version>
 		</dependency>
 
 		<!-- Database -->

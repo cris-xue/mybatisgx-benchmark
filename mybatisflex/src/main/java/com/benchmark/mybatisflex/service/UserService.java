@@ -21,7 +21,8 @@ public class UserService {
 
     @Transactional
     public int batchInsert(List<User> users) {
-        return userMapper.insertBatch(users);
+        Db.executeBatch(users, 1000, MyBatisFlexUserMapper.class, (mapper, user) -> mapper.insert(user));
+        return users.size();
     }
 
     @Transactional

@@ -16,7 +16,7 @@ import java.util.List;
 
 @SpringBootTest(classes = TestApplication.class)
 @Transactional
-public class MybatisgxTestServiceTest {
+public class MybatisflexTestServiceTest {
 
     @Autowired
     private UserService userService;

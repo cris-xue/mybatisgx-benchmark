@@ -11,7 +11,7 @@
 	</parent>
 
 	<modules>
-		<module>jpa</module>
+		<module>mybatis</module>
 		<module>mybatisflex</module>
 		<module>mgx</module>
 		<module>mybatisplus</module>
@@ -29,18 +29,12 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<mybatis-plus.version>3.5.5</mybatis-plus.version>
-		<mybatis-flex.version>1.9.3</mybatis-flex.version>
+		<mybatis-flex.version>1.11.6</mybatis-flex.version>
+		<mybatisgx.version>0.0.9-preview</mybatisgx.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- JPA -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-data-jpa</artifactId>
-				<version>3.3.13</version>
-			</dependency>
-
 			<!-- MyBatis-Plus -->
 			<dependency>
 				<groupId>com.baomidou</groupId>
@@ -51,7 +45,7 @@
 			<!-- MyBatis-Flex -->
 			<dependency>
 				<groupId>com.mybatis-flex</groupId>
-				<artifactId>mybatis-flex-spring-boot-starter</artifactId>
+				<artifactId>mybatis-flex-spring-boot3-starter</artifactId>
 				<version>${mybatis-flex.version}</version>
 			</dependency>
 
@@ -59,7 +53,7 @@
 			<dependency>
 				<groupId>com.mybatisgx</groupId>
 				<artifactId>mybatisgx-spring-boot3-starter</artifactId>
-				<version>0.0.9-preview</version>
+				<version>${mybatisgx.version}</version>
 			</dependency>
 
 			<!-- Database -->

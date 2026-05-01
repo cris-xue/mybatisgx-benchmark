@@ -29,32 +29,25 @@ public class User implements Serializable {
 
     @NotBlank
     @NotNull
-    @Column(name = "username")
     private String username;
 
     @NotBlank
     @NotNull
-    @Column(name = "email")
     private String email;
 
     @NotNull
-    @Column(name = "phone")
     private Long phone;
 
     @NotNull
-    @Column(name = "age")
     private Integer age;
 
     @NotNull
-    @Column(name = "status")
     private Integer status;
 
     @NotNull
-    @Column(name = "create_time")
     private Date createTime;
 
     @NotNull
-    @Column(name = "update_time")
     private Date updateTime;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
