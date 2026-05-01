@@ -2,7 +2,6 @@ package com.benchmark.mybatisgx.service.test;
 
 import com.benchmark.mybatisgx.TestApplication;
 import com.benchmark.mybatisgx.entity.User;
-import com.benchmark.mybatisgx.service.OrderService;
 import com.benchmark.mybatisgx.service.UserService;
 import com.navercorp.fixturemonkey.FixtureMonkey;
 import net.jqwik.api.Arbitraries;
@@ -21,8 +20,6 @@ public class MybatisgxTestServiceTest {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private OrderService orderService;
 
     @Test
     public void testBatchInsert100() {
