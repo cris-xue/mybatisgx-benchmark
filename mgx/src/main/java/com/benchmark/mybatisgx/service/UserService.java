@@ -13,18 +13,18 @@ import java.util.List;
  * 封装 MyBatisGX 批量操作和关联查询方法
  */
 @Service
-public class MybatisgxTestService {
+public class UserService {
 
     @Autowired
     private MybatisgxUserMapper userMapper;
 
     @Transactional
-    public int batchInsertUsers(List<User> users) {
+    public int batchInsert(List<User> users) {
         return userMapper.insertBatch(users);
     }
 
     @Transactional
-    public int batchUpdateUsers(List<User> users) {
+    public int batchUpdate(List<User> users) {
         return userMapper.updateBatchById(users);
     }
 

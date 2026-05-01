@@ -2,6 +2,8 @@ package com.benchmark.mybatisgx.entity;
 
 import com.mybatisgx.annotation.*;
 import com.mybatisgx.executor.genval.IdValueProcessor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,41 +27,37 @@ public class User implements Serializable {
     @GeneratedValue(IdValueProcessor.class)
     private Long id;
 
+    @NotBlank
+    @NotNull
     @Column(name = "username")
     private String username;
 
+    @NotBlank
+    @NotNull
     @Column(name = "email")
     private String email;
 
+    @NotNull
     @Column(name = "phone")
-    private String phone;
+    private Long phone;
 
+    @NotNull
     @Column(name = "age")
     private Integer age;
 
+    @NotNull
     @Column(name = "status")
     private Integer status;
 
+    @NotNull
     @Column(name = "create_time")
     private Date createTime;
 
+    @NotNull
     @Column(name = "update_time")
     private Date updateTime;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @Fetch(FetchMode.BATCH)
     private List<Order> orders;
-
-    /**
-     * 构造函数（用于批量插入）
-     */
-    public User(String username, String email, String phone, Integer age, Integer status) {
-        this.username = username;
-        this.email = email;
-        this.phone = phone;
-        this.age = age;
-        this.status = status;
-        this.createTime = new Date();
-        this.updateTime = new Date();
-    }
 }
