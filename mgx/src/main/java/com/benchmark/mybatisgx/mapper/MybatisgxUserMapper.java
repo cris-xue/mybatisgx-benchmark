@@ -15,8 +15,8 @@ public interface MybatisgxUserMapper extends SimpleDao<User, User, Long> {
 
     User findByIdAndAgeAndStatus(Long id, Integer age, Integer status);
 
-    User findByIdAndUsernameLikeAndAgeGtAndStatusIn(Long id, String name, Integer age, List<Integer> status);
+    User findByIdAndUsernameLikeAndAgeGtAndStatusIn(Long id, String username, Integer age, List<Integer> status);
 
     @Dynamic
-    List<User> findDynamicByIdAndUsernameLikeAndAgeGtAndStatusIn(Long id, String name, Integer age, List<Integer> status);
+    List<User> findDynamicByIdAndUsernameLikeAndAgeGtAndStatusIn(Long id, String username, Integer age, List<Integer> status);
 }

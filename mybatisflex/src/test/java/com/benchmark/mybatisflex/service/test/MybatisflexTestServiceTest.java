@@ -6,9 +6,10 @@ import com.benchmark.mybatisflex.service.UserService;
 import com.navercorp.fixturemonkey.FixtureMonkey;
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ public class MybatisflexTestServiceTest {
     @Autowired
     private UserService userService;
 
-    @Test
+    @Rollback
+    @RepeatedTest(10)
     public void testBatchInsert100() {
         FixtureMonkey fixtureMonkey = FixtureMonkey.create();
 
@@ -40,7 +42,8 @@ public class MybatisflexTestServiceTest {
         System.out.println(String.format("批量新增100条数据时间：%s", endTime - startTime));
     }
 
-    @Test
+    @Rollback
+    @RepeatedTest(10)
     public void testBatchInsert10W() {
         FixtureMonkey fixtureMonkey = FixtureMonkey.create();
 

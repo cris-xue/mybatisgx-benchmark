@@ -50,13 +50,13 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User findByIdAndUsernameLikeAndAgeGtAndStatusIn(Long id, String name, Integer age, List<Integer> status) {
-        return userMapper.findByIdAndUsernameLikeAndAgeGtAndStatusIn(id, name, age, status);
+    public User findByIdAndUsernameLikeAndAgeGtAndStatusIn(Long id, String username, Integer age, List<Integer> status) {
+        return userMapper.findByIdAndUsernameLikeAndAgeGtAndStatusIn(id, username, age, status);
     }
 
     @Transactional(readOnly = true)
-    public List<User> findDynamicByIdAndUsernameLikeAndAgeGtAndStatusIn(Long id, String name, Integer age, List<Integer> status) {
-        return userMapper.findDynamicByIdAndUsernameLikeAndAgeGtAndStatusIn(id, name, age, status);
+    public List<User> findDynamicByIdAndUsernameLikeAndAgeGtAndStatusIn(Long id, String username, Integer age, List<Integer> status) {
+        return userMapper.findDynamicByIdAndUsernameLikeAndAgeGtAndStatusIn(id, username, age, status);
     }
 
     @Transactional(readOnly = true)
