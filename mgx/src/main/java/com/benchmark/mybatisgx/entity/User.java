@@ -1,17 +1,18 @@
 package com.benchmark.mybatisgx.entity;
 
-import com.mybatisgx.annotation.*;
+import com.mybatisgx.annotation.Entity;
+import com.mybatisgx.annotation.GeneratedValue;
+import com.mybatisgx.annotation.Id;
+import com.mybatisgx.annotation.Table;
 import com.mybatisgx.executor.genval.IdValueProcessor;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.ibatis.mapping.FetchType;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * MyBatisGX 用户实体
@@ -49,8 +50,4 @@ public class User implements Serializable {
 
     @NotNull
     private Date updateTime;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    @Fetch(FetchMode.BATCH)
-    private List<Order> orders;
 }
