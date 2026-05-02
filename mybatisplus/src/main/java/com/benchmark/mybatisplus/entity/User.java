@@ -26,7 +26,7 @@ public class User implements Serializable {
 
     private String email;
 
-    private String phone;
+    private Long phone;
 
     private Integer age;
 
@@ -39,7 +39,7 @@ public class User implements Serializable {
     /**
      * 构造函数（用于批量插入）
      */
-    public User(String username, String email, String phone, Integer age, Integer status) {
+    public User(String username, String email, Long phone, Integer age, Integer status) {
         this.username = username;
         this.email = email;
         this.phone = phone;

@@ -1,8 +1,5 @@
-package com.benchmark.mybatisflex.entity;
+package com.benchmark.mybatis.entity;
 
-import com.mybatisflex.annotation.Id;
-import com.mybatisflex.annotation.KeyType;
-import com.mybatisflex.annotation.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,15 +10,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * MyBatis-Flex 用户实体
+ * MyBatis 用户实体
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("benchmark_user")
 public class User implements Serializable {
 
-    @Id(keyType = KeyType.Auto)
     private Long id;
 
     @NotBlank

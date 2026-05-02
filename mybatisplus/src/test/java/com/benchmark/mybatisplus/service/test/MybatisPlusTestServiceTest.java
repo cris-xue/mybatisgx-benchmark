@@ -1,8 +1,8 @@
-package com.benchmark.mybatisflex.service.test;
+package com.benchmark.mybatisplus.service.test;
 
-import com.benchmark.mybatisflex.TestApplication;
-import com.benchmark.mybatisflex.entity.User;
-import com.benchmark.mybatisflex.service.UserService;
+import com.benchmark.mybatisplus.TestApplication;
+import com.benchmark.mybatisplus.entity.User;
+import com.benchmark.mybatisplus.service.MybatisPlusTestService;
 import com.navercorp.fixturemonkey.FixtureMonkey;
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 @Transactional
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(classes = TestApplication.class)
-public class MybatisflexTestServiceTest {
+public class MybatisPlusTestServiceTest {
 
     private static final FixtureMonkey FIXTURE_MONKEY = FixtureMonkey.create();
 
@@ -28,14 +28,13 @@ public class MybatisflexTestServiceTest {
     private static final List<User> userList10000 = new ArrayList<>(10000);
 
     @Autowired
-    private UserService userService;
+    private MybatisPlusTestService userService;
 
     @BeforeAll
     static void init() {
         for (int i = 0; i < 100; i++) {
             User user = FIXTURE_MONKEY.giveMeBuilder(User.class)
                     .set("id", null)
-                    .set("orders", null)
                     .set("username", usernameGenerator())
                     .set("email", usernameGenerator())
                     .sample();
@@ -45,7 +44,6 @@ public class MybatisflexTestServiceTest {
         for (int i = 0; i < 10000; i++) {
             User user = FIXTURE_MONKEY.giveMeBuilder(User.class)
                     .set("id", null)
-                    .set("orders", null)
                     .set("username", usernameGenerator())
                     .set("email", usernameGenerator())
                     .sample();
@@ -241,4 +239,3 @@ public class MybatisflexTestServiceTest {
         return cloneUser;
     }
 }
-

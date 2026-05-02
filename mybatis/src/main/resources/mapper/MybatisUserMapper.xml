@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.benchmark.mybatis.mapper.MybatisUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.benchmark.mybatis.entity.User">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="BIGINT"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, username, email, phone, age, status, create_time, update_time
+    </sql>
+
+    <insert id="insert" parameterType="com.benchmark.mybatis.entity.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO benchmark_user (username, email, phone, age, status, create_time, update_time)
+        VALUES (#{username}, #{email}, #{phone}, #{age}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO benchmark_user (username, email, phone, age, status, create_time, update_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.username}, #{item.email}, #{item.phone}, #{item.age}, #{item.status}, #{item.createTime}, #{item.updateTime})
+        </foreach>
+    </insert>
+
+    <update id="updateById" parameterType="com.benchmark.mybatis.entity.User">
+        UPDATE benchmark_user
+        SET username = #{username},
+            email = #{email},
+            phone = #{phone},
+            age = #{age},
+            status = #{status},
+            update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.benchmark.mybatis.entity.User">
+        UPDATE benchmark_user
+        <set>
+            <if test="username != null">username = #{username},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateBatchById" parameterType="java.util.List">
+        <foreach collection="list" item="item" separator=";">
+            UPDATE benchmark_user
+            SET username = #{item.username},
+                email = #{item.email},
+                phone = #{item.phone},
+                age = #{item.age},
+                status = #{item.status},
+                update_time = #{item.updateTime}
+            WHERE id = #{item.id}
+        </foreach>
+    </update>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM benchmark_user
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByIdAndAgeAndStatus" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM benchmark_user
+        WHERE id = #{id}
+          AND age = #{age}
+          AND status = #{status}
+        LIMIT 1
+    </select>
+
+    <select id="findByIdAndUsernameLikeAndAgeGtAndStatusIn" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM benchmark_user
+        WHERE id = #{id}
+          AND username LIKE CONCAT('%', #{username}, '%')
+          AND age &gt; #{age}
+          AND status IN
+        <foreach collection="statusList" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        LIMIT 1
+    </select>
+
+    <select id="findDynamicByIdAndUsernameLikeAndAgeGtAndStatusIn" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM benchmark_user
+        <where>
+            <if test="id != null">AND id = #{id}</if>
+            <if test="username != null">AND username LIKE CONCAT('%', #{username}, '%')</if>
+            <if test="age != null">AND age &gt; #{age}</if>
+            <if test="statusList != null and statusList.size() > 0">
+                AND status IN
+                <foreach collection="statusList" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+</mapper>
