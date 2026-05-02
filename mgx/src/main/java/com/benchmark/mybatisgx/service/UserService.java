@@ -20,13 +20,13 @@ public class UserService {
     private MybatisgxUserMapper userMapper;
 
     @Transactional
-    public int batchInsert(List<User> userList) {
-        return userMapper.insertBatch(userList);
+    public int insert(User user) {
+        return userMapper.insert(user);
     }
 
     @Transactional
-    public int batchUpdate(List<User> userList) {
-        return userMapper.updateBatchById(userList);
+    public int batchInsert(List<User> userList) {
+        return userMapper.insertBatch(userList);
     }
 
     @Transactional
@@ -37,6 +37,11 @@ public class UserService {
     @Transactional
     public int updateSelectiveById(User user) {
         return userMapper.updateSelectiveById(user);
+    }
+
+    @Transactional
+    public int batchUpdate(List<User> userList) {
+        return userMapper.updateBatchById(userList);
     }
 
     @Transactional(readOnly = true)
