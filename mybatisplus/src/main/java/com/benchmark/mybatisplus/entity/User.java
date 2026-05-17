@@ -19,7 +19,7 @@ import java.util.Date;
 @TableName("benchmark_user")
 public class User implements Serializable {
 
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     private String username;

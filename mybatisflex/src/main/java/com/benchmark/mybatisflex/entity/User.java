@@ -3,6 +3,7 @@ package com.benchmark.mybatisflex.entity;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import com.mybatisflex.core.keygen.KeyGenerators;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import java.util.Date;
 @Table("benchmark_user")
 public class User implements Serializable {
 
-    @Id(keyType = KeyType.Auto)
+    @Id(keyType = KeyType.Generator, value = KeyGenerators.flexId)
     private Long id;
 
     @NotBlank
