@@ -18,15 +18,15 @@
     </sql>
 
     <insert id="insert" parameterType="com.benchmark.mybatis.entity.User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO benchmark_user (username, email, phone, age, status, create_time, update_time)
-        VALUES (#{username}, #{email}, #{phone}, #{age}, #{status}, #{createTime}, #{updateTime})
+        INSERT INTO benchmark_user (id, username, email, phone, age, status, create_time, update_time)
+        VALUES (#{id}, #{username}, #{email}, #{phone}, #{age}, #{status}, #{createTime}, #{updateTime})
     </insert>
 
     <insert id="insertBatch" parameterType="java.util.List">
         INSERT INTO benchmark_user (username, email, phone, age, status, create_time, update_time)
         VALUES
         <foreach collection="list" item="item" separator=",">
-            (#{item.username}, #{item.email}, #{item.phone}, #{item.age}, #{item.status}, #{item.createTime}, #{item.updateTime})
+            (#{item.id}, #{item.username}, #{item.email}, #{item.phone}, #{item.age}, #{item.status}, #{item.createTime}, #{item.updateTime})
         </foreach>
     </insert>
 

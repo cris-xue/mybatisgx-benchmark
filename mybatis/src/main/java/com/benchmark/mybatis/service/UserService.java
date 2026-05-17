@@ -25,16 +25,20 @@ public class UserService {
 
     @Transactional
     public int insert(User user) {
+        user.setId(System.currentTimeMillis());
         return userMapper.insert(user);
     }
 
     @Transactional
     public int batchInsert(List<User> userList) {
+        long id = System.currentTimeMillis();
         SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
         try {
             MybatisUserMapper userMapper = sqlSession.getMapper(MybatisUserMapper.class);
             for (int i = 0; i < userList.size(); i++) {
-                userMapper.insert(userList.get(i));
+                User user = userList.get(i);
+                user.setId(id++);
+                userMapper.insert(user);
                 if ((i + 1) % 1000 == 0 || (i + 1) == userList.size()) {
                     sqlSession.flushStatements();
                 }
