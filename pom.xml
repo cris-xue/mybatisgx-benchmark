@@ -27,7 +27,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<mybatis-plus.version>3.5.15</mybatis-plus.version>
 		<mybatis-flex.version>1.11.6</mybatis-flex.version>
-		<mybatisgx.version>0.0.9-preview</mybatisgx.version>
+		<mybatisgx.version>0.1.0</mybatisgx.version>
 	</properties>
 
 	<dependencyManagement>
