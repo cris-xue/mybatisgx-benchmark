@@ -22,14 +22,6 @@
         VALUES (#{id}, #{username}, #{email}, #{phone}, #{age}, #{status}, #{createTime}, #{updateTime})
     </insert>
 
-    <insert id="insertBatch" parameterType="java.util.List">
-        INSERT INTO benchmark_user (username, email, phone, age, status, create_time, update_time)
-        VALUES
-        <foreach collection="list" item="item" separator=",">
-            (#{item.id}, #{item.username}, #{item.email}, #{item.phone}, #{item.age}, #{item.status}, #{item.createTime}, #{item.updateTime})
-        </foreach>
-    </insert>
-
     <update id="updateById" parameterType="com.benchmark.mybatis.entity.User">
         UPDATE benchmark_user
         SET username = #{username},
@@ -52,19 +44,6 @@
             <if test="updateTime != null">update_time = #{updateTime},</if>
         </set>
         WHERE id = #{id}
-    </update>
-
-    <update id="updateBatchById" parameterType="java.util.List">
-        <foreach collection="list" item="item" separator=";">
-            UPDATE benchmark_user
-            SET username = #{item.username},
-                email = #{item.email},
-                phone = #{item.phone},
-                age = #{item.age},
-                status = #{item.status},
-                update_time = #{item.updateTime}
-            WHERE id = #{item.id}
-        </foreach>
     </update>
 
     <select id="findById" resultMap="BaseResultMap">
